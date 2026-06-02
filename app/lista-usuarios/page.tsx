@@ -25,7 +25,7 @@ export default function ListaUsuariosPage() {
   const carregarUsuarios = async () => {
     try {
       setLoading(true);
-      const response = await api.get("/usuarios");
+      const response = await api.get("/users");
       setUsuarios(response.data);
       setError("");
     } catch (err: any) {
@@ -39,7 +39,7 @@ export default function ListaUsuariosPage() {
     if (window.confirm("Tem certeza que deseja deletar este usuário?")) {
       try {
         setDeletingId(id);
-        await api.delete(`/usuarios/${id}`);
+        await api.delete(`/users/${id}`);
         setUsuarios(usuarios.filter((u) => u.id !== id));
       } catch (err: any) {
         setError(err.response?.data?.message || "Erro ao deletar usuário");

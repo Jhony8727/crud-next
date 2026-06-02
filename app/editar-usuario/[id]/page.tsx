@@ -33,7 +33,7 @@ export default function EditarUsuarioPage() {
   const carregarUsuario = async () => {
     try {
       setLoading(true);
-      const response = await api.get(`/usuarios/${id}`);
+      const response = await api.get(`/users/${id}`);
       setFormData(response.data);
       setError("");
     } catch (err: any) {
@@ -58,7 +58,7 @@ export default function EditarUsuarioPage() {
     setSaving(true);
 
     try {
-      await api.put(`/usuarios/${id}`, {
+      await api.put(`/users/${id}`, {
         name: formData.name,
         email: formData.email,
       });

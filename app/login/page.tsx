@@ -18,13 +18,13 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      const response = await api.post("/login", {
+      const response = await api.post("/auth/login", {
         email,
         password,
       });
 
       // Salva o token no localStorage
-      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("token", response.data.access_token);
 
       // Redireciona para a lista de usuários
       router.push("/lista-usuarios");

@@ -12,6 +12,9 @@ export default function CadastroPage() {
     email: "",
     password: "",
     confirmPassword: "",
+    course: "",
+    phone: "",
+    semester: "",
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -45,10 +48,13 @@ export default function CadastroPage() {
     }
 
     try {
-      await api.post("/usuarios", {
+      await api.post("/users", {
         name: formData.name,
         email: formData.email,
         password: formData.password,
+        course: formData.course,
+        phone: formData.phone,
+        semester: formData.semester,
       });
 
       setSuccess(
@@ -127,6 +133,25 @@ export default function CadastroPage() {
 
             <div>
               <label
+                htmlFor="phone"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Telefone
+              </label>
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                required
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                placeholder="Seu telefone"
+                value={formData.phone}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div>
+              <label
                 htmlFor="password"
                 className="block text-sm font-medium text-gray-700"
               >
@@ -159,6 +184,45 @@ export default function CadastroPage() {
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 placeholder="Confirme sua senha"
                 value={formData.confirmPassword}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="course"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Curso
+              </label>
+              <input
+                id="course"
+                name="course"
+                type="text"
+                required
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                placeholder="Nome do curso"
+                value={formData.course}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="semester"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Semestre
+              </label>
+              <input
+                id="semester"
+                name="semester"
+                type="number"
+                min="1"
+                required
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                placeholder="Ex: 2023.1"
+                value={formData.semester}
                 onChange={handleChange}
               />
             </div>
